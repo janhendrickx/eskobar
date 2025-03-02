@@ -18,7 +18,6 @@ rood: #F14835 - rgb(241, 72, 53);
     margin-bottom: 10px;
 }
 
-
 body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dd, ol, ul, form, fieldset, legend, table, th, td, caption, figure, hr {
     font-weight: 400;
     margin: 0;
@@ -371,6 +370,14 @@ p, span{
 }
 .building-times {
     /*font-family: "Akzidenz Medium";*/
+}
+.building-times p u,
+.building-times p {
+    color: #fff;
+}
+
+.building-times p:not('text-white') {
+    color: #333;
 }
 @media (min-width: 48em) {
     .building-times {

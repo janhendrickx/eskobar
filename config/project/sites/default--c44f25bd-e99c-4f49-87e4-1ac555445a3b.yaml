@@ -1,0 +1,8 @@
+baseUrl: $PRIMARY_SITE_URL
+handle: default
+hasUrls: true
+language: nl-BE
+name: Eskobar
+primary: true
+siteGroup: 43468784-313c-4cf2-9eec-f27165d2afc5 # Eskobar
+sortOrder: 1

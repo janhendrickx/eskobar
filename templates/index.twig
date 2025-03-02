@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+{% include 'base/head.twig' %}
+<body>
+    <div id="js__media-check"></div>
+    <div class="site__content">
+        
+        <div class="home__screen">
+            {% include 'blocks/navigation.twig' %}
+            {% include 'content/main.twig' %}
+            {% include 'blocks/footer.twig' %}
+        </div>
+        <div class="burger__screen">
+            {% include 'content/menu.twig' %}
+        </div>
+        <div class="store__screen">
+            {% include 'content/info.twig' %}
+        </div>
+    </div>
+    {% include 'scripts/scripts.twig' %}
+</body>
+</html>

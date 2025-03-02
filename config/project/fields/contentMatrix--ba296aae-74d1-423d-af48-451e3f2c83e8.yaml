@@ -1,0 +1,30 @@
+columnSuffix: null
+handle: contentMatrix
+instructions: null
+name: Inhoud
+searchable: true
+settings:
+  createButtonLabel: 'Nieuw tekstblok toevoegen'
+  defaultIndexViewMode: cards
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - bda95243-a765-44ba-a3e8-4cc60da1c145 # Tekst
+    -
+      __assoc__:
+        -
+          - uid
+          - d0e0d958-7098-46b6-8b99-cf083aae26d7 # Link
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

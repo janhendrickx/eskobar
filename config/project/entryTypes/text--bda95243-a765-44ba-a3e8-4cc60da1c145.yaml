@@ -1,0 +1,39 @@
+color: null
+fieldLayouts:
+  6d22fb12-a799-4e5d-8209-fd1ee5b762d9:
+    cardView:
+      - 'layoutElement:3bd3452d-f2d6-48a3-81c1-af01998a0532'
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-02-22T10:59:55+00:00'
+            elementCondition: null
+            fieldUid: 22739330-272f-4214-be42-a5e7c7cd0978 # Tekst
+            handle: null
+            includeInCards: true
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3bd3452d-f2d6-48a3-81c1-af01998a0532
+            userCondition: null
+            warning: null
+            width: 100
+        name: Inhoud
+        uid: 4b84cbd6-b1f7-49b1-a4ee-e2835ddc27d7
+        userCondition: null
+handle: text
+hasTitleField: false
+icon: null
+name: Tekst
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

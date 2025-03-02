@@ -1,0 +1,56 @@
+columnSuffix: null
+handle: info
+instructions: null
+name: Info
+searchable: false
+settings:
+  addRowLabel: 'Voeg een rij toe'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Heading
+            -
+              - handle
+              - heading
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Tekst
+            -
+              - handle
+              - text
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  defaults:
+    -
+      __assoc__:
+        -
+          - col1
+          - ''
+        -
+          - col2
+          - ''
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

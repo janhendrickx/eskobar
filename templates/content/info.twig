@@ -1,0 +1,43 @@
+{# <div class="store__screen"> #}
+        <div class="screen__content">
+            <div id="burgers" class="burger-group">
+                <div class="screen__content">
+                    <div class="building-block">
+                        <img src="assets/img/eskobar.svg" alt="eskobar logo" class="eskobar_tekst_logo_contact" />
+                        <div class="building-address">
+                            <p>{{ info.streetNr }}, {{ info.zip }} {{ info.city }}</p>
+                            <p>{{ "BTW:: " ~ info.btwNr }}</p>
+                        </div>
+                        {% if info.tonen and info.kader|length %}
+                            <div class="building-times">
+                                <div class="border">
+                                    <br>
+                                        {{ info.kader }}
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="building-times">
+                            {% for row in info.info %}
+                                    <p class="text-white">{{ row.heading }}</p>
+                                    <span class="dull">{{ row.text|nl2br }}</span>
+                                    {% if loop.last == false %}    
+                                        <br>
+                                        <span class="line loaded" style='margin-block: 1rem;'></span>
+                                    {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% if info.googleMaps %}
+                            {% set googleMapsUrlLink = info.googleMaps %}
+                            <a class="map-btn" href="{{ info.googleMaps }}" target="_blank">
+                                <span class="map-btn__after"></span>
+                                <span class="map-btn__before"></span>
+                                <span class="map-btn__text">{{ info.googleMaps.label }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {# </div> #}

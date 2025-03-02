@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 3b838d7e-ee1b-4818-a756-dc28dd571e47 # Informatie
+handle: info
+maxAuthors: 1
+name: Info
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primaire invoer-pagina'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  c44f25bd-e99c-4f49-87e4-1ac555445a3b: # Eskobar
+    enabledByDefault: true
+    hasUrls: true
+    template: index.twig
+    uriFormat: info
+type: single

@@ -1,0 +1,56 @@
+dateModified: 1740771478
+email:
+  fromEmail: admin@janhendrickx.be
+  fromName: Eskobar
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    2b1b3dcb-0aea-4b32-b903-c03a0490bbc7: Pagina # Pagina
+    3b838d7e-ee1b-4818-a756-dc28dd571e47: Informatie # Informatie
+    3f24f68b-1921-4d40-82e8-23506b424e70: Home # Home
+    5d067db8-2536-4d07-a966-d4f807d19704: Kader # Kader
+    8b68262e-6fe4-4dea-9563-543898f92f84: Mailadres # Mailadres
+    9d02ce1f-79b8-44ec-a46c-f81e18a52b4d: Knop # Knop
+    548e3f68-624a-44fb-a801-020e085b102a: Inhoud # Inhoud
+    6522b3e9-975e-46f9-82c4-ca4fd89ef4b4: 'BTW nummer' # BTW nummer
+    85833dac-d58f-4262-b34a-7fc21a74c548: Plaats # Plaats
+    2008324f-13c7-4130-b879-5e3e2d272123: Postcode # Postcode
+    22739330-272f-4214-be42-a5e7c7cd0978: Tekst # Tekst
+    43468784-313c-4cf2-9eec-f27165d2afc5: Eskobar # Eskobar
+    a0958a06-0e63-499a-99fe-ec51c95e9112: Tonen # Tonen
+    aff765af-7376-4642-81ae-09d1792f7303: Info # Info
+    b8ab75b6-fc56-40da-b011-dcfed847dd63: 'Google Maps' # Google Maps
+    b396c5ad-4751-4f93-9fd4-678f8f04dc88: Info # Info
+    ba296aae-74d1-423d-af48-451e3f2c83e8: Inhoud # Inhoud
+    bda95243-a765-44ba-a3e8-4cc60da1c145: Tekst # Tekst
+    c44f25bd-e99c-4f49-87e4-1ac555445a3b: Eskobar # Eskobar
+    d0e0d958-7098-46b6-8b99-cf083aae26d7: Link # Link
+    e8402b03-d9a2-4670-9862-b5168dd5d4c5: Telefoonnummer # Telefoonnummer
+    fdb5eef6-de84-4ce5-9d33-787bd5b8c792: Simple # Simple
+    fdf11145-cf77-4635-a872-2b900223e4e8: 'Straat en nummer' # Straat en nummer
+plugins:
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0.0
+  cp-field-inspect:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  tinymce:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: Eskobar
+  schemaVersion: 5.6.0.2
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

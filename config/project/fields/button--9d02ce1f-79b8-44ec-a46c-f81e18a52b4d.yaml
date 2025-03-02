@@ -1,0 +1,52 @@
+columnSuffix: null
+handle: button
+instructions: null
+name: Knop
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: true
+  typeSettings:
+    __assoc__:
+      -
+        - asset
+        -
+          __assoc__:
+            -
+              - allowedKinds
+              -
+                - image
+                - pdf
+                - word
+            -
+              - showUnpermittedVolumes
+              - ''
+            -
+              - showUnpermittedFiles
+              - ''
+      -
+        - entry
+        -
+          __assoc__:
+            -
+              - sources
+              - '*'
+      -
+        - url
+        -
+          __assoc__:
+            -
+              - allowRootRelativeUrls
+              - ''
+            -
+              - allowAnchors
+              - ''
+  types:
+    - entry
+    - url
+    - asset
+    - email
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

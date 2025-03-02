@@ -1,0 +1,37 @@
+color: null
+fieldLayouts:
+  b94ed382-2d42-4ddc-9183-00da95d6467b:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-02-22T11:03:11+00:00'
+            elementCondition: null
+            fieldUid: 9d02ce1f-79b8-44ec-a46c-f81e18a52b4d # Knop
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e8e53218-3787-4670-9c48-9e7a74ae4282
+            userCondition: null
+            warning: null
+            width: 100
+        name: Inhoud
+        uid: 8b11a69f-725d-4a98-8b7b-571daf47c2c3
+        userCondition: null
+handle: link
+hasTitleField: false
+icon: null
+name: Link
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

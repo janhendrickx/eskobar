@@ -1,0 +1,26 @@
+columnSuffix: null
+handle: googleMaps
+instructions: null
+name: 'Google Maps'
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: true
+  typeSettings:
+    __assoc__:
+      -
+        - url
+        -
+          __assoc__:
+            -
+              - allowRootRelativeUrls
+              - ''
+            -
+              - allowAnchors
+              - ''
+  types:
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

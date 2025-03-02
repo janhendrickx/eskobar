@@ -1,0 +1,16 @@
+
+{% for block in contentBlocks %}
+    {% switch block.type %}
+        {% case "text" %}
+            {{ block.text|nl2br }}
+        {% case "link" %}
+            {% set link = block.button %}
+            {% if link.type == "email" %}
+                <a class="order-btn" href="{{ link.value() }}" style="padding-block: 2rem">
+                    <span class="order-btn__after"></span>
+                    <span class="order-btn__before"></span>
+                    <span class="order-btn__text">{{ link.label }}</span>
+                </a>
+            {% endif %}
+        {% endswitch %}
+{% endfor %}
