@@ -1,21 +1,34 @@
+{% set title = "Menu" %}
 
+{% set menuGoups = craft.entries().section('menu').type('heading').all() %}
+{% set menuItems = craft.entries().section('menu').type('menuItem') %}
+        
 <div class="screen__content">
-  <h2 class="screen__title">Menu</h2>
+  <h2 class="screen__title">{{ title }}</h2>
     <div id="burgers" class="burger-group">
-      <div class="burger_background" style=""></div>
-        <div class="burger-item">     
-          <div class="burger clair" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$12</div>
-            <img class="burger--clair-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-35">
-            <img class="burger--clair-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/mayo.png" data-direction="up" data-end="-20">
-            <img class="burger--clair-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/chicken_patty.png" data-direction="down" data-end="5">
-            <img class="burger--clair-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/slaw.png" data-direction="down" data-end="35">
-            <img class="burger--clair-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--4.png" data-direction="down" data-end="55">
-            <div class="burger__shadow--clair js__shadow"></div>
-          </div>
-          <h2 class="burger-title">CLAIR</h2>
-          <p class="burger-ingredients">southern fried chicken, slaw with mayo or jalapeño mayo</p>
+      
+      {% for group in menuGoups %}
+        <div class="line loaded"></div>
+        <div class="burger-group-title">
+            <h2>{{ group.title }}</h2>
         </div>
+        
+            {% for item in group.children %}
+            {% set price = item.price %}
+            <div class="burger-item">     
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <small>{{ price ? '€ '~ price }}</small>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <h2 class="burger-title">{{ item.title }}</h2>
+                {% if item.extra %}<small>{{ item.extra ? ' - ' ~ item.extra }}</small>{% endif %}
+              </div>
+              <p class="burger-ingredients">{{ item.text }}</p>
+            </div>
+            {% endfor %}
+          {% endfor %}
+        
+        
 
         <div class="burger-item">
           <div class="burger clair-jnr burger--small" data-state="closed" style="">
