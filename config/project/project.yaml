@@ -1,4 +1,4 @@
-dateModified: 1740771478
+dateModified: 1740939693
 email:
   fromEmail: admin@janhendrickx.be
   fromName: Eskobar
@@ -8,11 +8,19 @@ meta:
     2b1b3dcb-0aea-4b32-b903-c03a0490bbc7: Pagina # Pagina
     3b838d7e-ee1b-4818-a756-dc28dd571e47: Informatie # Informatie
     3f24f68b-1921-4d40-82e8-23506b424e70: Home # Home
+    4c7a80d6-0249-476d-95bf-c287d9c3dcdf: Titel # Titel
     5d067db8-2536-4d07-a966-d4f807d19704: Kader # Kader
     8b68262e-6fe4-4dea-9563-543898f92f84: Mailadres # Mailadres
+    9bc116c1-4a3f-4ab5-a101-b2d850599802: Prijs # Prijs
     9d02ce1f-79b8-44ec-a46c-f81e18a52b4d: Knop # Knop
+    130f9745-bb01-4272-b43e-5c73a05a62f5: Extra # Extra
     548e3f68-624a-44fb-a801-020e085b102a: Inhoud # Inhoud
+    910ab6e9-35ce-4942-97f8-70a8cdd26ec1: Titel # Titel
+    911c7da7-e189-4dbe-90c5-50ec940f0111: Pikantheid # Pikantheid
+    940e46c6-2d30-4fcb-9c38-be18c9ac6319: 'Menu item' # Menu item
     6522b3e9-975e-46f9-82c4-ca4fd89ef4b4: 'BTW nummer' # BTW nummer
+    7747f5f0-436a-4424-87ff-129d6f72472a: Menu # Menu
+    7877c149-1d6f-4e55-a5e1-d3d8eb81bfe5: 'Menu items' # Menu items
     85833dac-d58f-4262-b34a-7fc21a74c548: Plaats # Plaats
     2008324f-13c7-4130-b879-5e3e2d272123: Postcode # Postcode
     22739330-272f-4214-be42-a5e7c7cd0978: Tekst # Tekst
@@ -25,6 +33,7 @@ meta:
     bda95243-a765-44ba-a3e8-4cc60da1c145: Tekst # Tekst
     c44f25bd-e99c-4f49-87e4-1ac555445a3b: Eskobar # Eskobar
     d0e0d958-7098-46b6-8b99-cf083aae26d7: Link # Link
+    e65a5670-88d9-49a9-9a78-36b9261b6cb0: Menu # Menu
     e8402b03-d9a2-4670-9862-b5168dd5d4c5: Telefoonnummer # Telefoonnummer
     fdb5eef6-de84-4ce5-9d33-787bd5b8c792: Simple # Simple
     fdf11145-cf77-4635-a872-2b900223e4e8: 'Straat en nummer' # Straat en nummer
@@ -45,8 +54,9 @@ system:
   edition: solo
   live: true
   name: Eskobar
+  retryDuration: null
   schemaVersion: 5.6.0.2
-  timeZone: America/Los_Angeles
+  timeZone: Europe/Brussels
 users:
   allowPublicRegistration: false
   defaultGroup: null

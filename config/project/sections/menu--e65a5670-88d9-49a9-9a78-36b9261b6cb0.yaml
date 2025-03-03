@@ -1,0 +1,33 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 940e46c6-2d30-4fcb-9c38-be18c9ac6319 # Menu item
+  -
+    uid: 4c7a80d6-0249-476d-95bf-c287d9c3dcdf # Titel
+handle: menu
+maxAuthors: 1
+name: Menu
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primaire invoer-pagina'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  c44f25bd-e99c-4f49-87e4-1ac555445a3b: # Eskobar
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: null
+structure:
+  maxLevels: 2
+  uid: 0d8da9d5-492b-4dae-b1e3-9cd0a6b6ecb4
+type: structure

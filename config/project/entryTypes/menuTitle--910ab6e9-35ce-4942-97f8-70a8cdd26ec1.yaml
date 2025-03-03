@@ -1,0 +1,51 @@
+color: null
+fieldLayouts:
+  e6e53433-d867-4ac8-b52c-cb29f68f2c7c:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-03-02T17:30:30+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 4d40de7d-27c7-4f50-9a09-cc0ea2a13a41
+            userCondition: null
+            warning: null
+            width: 100
+        name: Inhoud
+        uid: 60985e37-ee87-4fd0-bde5-183343ca345e
+        userCondition: null
+handle: menuTitle
+hasTitleField: true
+icon: null
+name: Titel
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
