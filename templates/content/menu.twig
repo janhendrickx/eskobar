@@ -1,4 +1,4 @@
-{% set title = "Menu" %}
+{% set title = "Menu"|upper %}
 
 {% set menuGoups = craft.entries().section('menu').type('heading').all() %}
 {% set menuItems = craft.entries().section('menu').type('menuItem') %}
@@ -8,12 +8,12 @@
     <div id="burgers" class="burger-group">
       
       {% for group in menuGoups %}
-        <div class="line loaded"></div>
-        <div class="burger-group-title">
-            <h2>{{ group.title }}</h2>
-        </div>
-        
-            {% for item in group.children %}
+        <div class="burger-group-item">
+          <div class="burger-group-title">
+              <h2>{{ group.title }}</h2>
+          </div>
+          <div class="burger-group-item-list">
+          {% for item in group.children %}
             {% set price = item.price %}
             <div class="burger-item">     
               <div style="display: flex; align-items: center; justify-content: center;">
@@ -26,146 +26,10 @@
               <p class="burger-ingredients">{{ item.text }}</p>
             </div>
             {% endfor %}
-          {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
         
-        
-
-        <div class="burger-item">
-          <div class="burger clair-jnr burger--small" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$7</div>
-            <img class="burger--clair-jnr-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-35">
-            <img class="burger--clair-jnr-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/mayo--plain.png" data-direction="up" data-end="-15">
-            <img class="burger--clair-jnr-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/chicken_patty.png" data-direction="down" data-end="5">
-            <img class="burger--clair-jnr-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/slaw.png" data-direction="down" data-end="28">
-            <img class="burger--clair-jnr-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--4.png" data-direction="down" data-end="45">
-            <div class="burger__shadow--clair-jnr js__shadow"></div>
-          </div>
-          <h2 class="burger-title">CLAIR JNR</h2>
-          <p class="burger-ingredients">southern fried chicken, <span class="nowrap">slaw, mayo</span></p>
-        </div>
-
-        <div class="burger-item">
-          <div class="burger huxtaburger" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$9</div>
-            <img class="burger--hux-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-55">
-            <img class="burger--hux-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/lettuce.png" data-direction="up" data-end="-35">
-            <img class="burger--hux-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tomato--1.png" data-direction="up" data-end="-15">
-            <img class="burger--hux-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/cheese--1.png" data-direction="down" data-end="5">
-            <img class="burger--hux-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/patty--1.png" data-direction="down" data-end="25">
-            <img class="burger--hux-06" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/pickles.png" data-direction="down" data-end="50">
-            <img class="burger--hux-07" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--1.png" data-direction="down" data-end="60">
-            <div class="burger__shadow--hux js__shadow"></div>
-          </div>
-          <h2 class="burger-title">HUXTABURGER</h2>
-          <p class="burger-ingredients">beef pattie, mustard, mayo, tomato sauce, tomato, cheese, lettuce, pickles</p>
-        </div>
-
-        <div class="burger-item">
-          <div class="burger bills" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$12</div>
-            <img class="burger--bills-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-95">
-            <img class="burger--bills-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/lettuce.png" data-direction="up" data-end="-80">
-            <img class="burger--bills-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/egg.png" data-direction="up" data-end="-60">
-            <img class="burger--bills-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/pineapple.png" data-direction="up" data-end="-38">
-            <img class="burger--bills-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/beetroot.png" data-direction="up" data-end="-18">
-            <img class="burger--bills-06" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bacon.png" data-direction="down" data-end="4">
-            <img class="burger--bills-07" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tomato--1.png" data-direction="down" data-end="25">
-            <img class="burger--bills-08" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/cheese--1.png" data-direction="down" data-end="40">
-            <img class="burger--bills-09" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/patty--1.png" data-direction="down" data-end="60">
-            <img class="burger--bills-10" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/pickles.png" data-direction="down" data-end="85">
-            <img class="burger--bills-11" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--1.png" data-direction="down" data-end="95">
-            <div class="burger__shadow--bills js__shadow"></div>
-          </div>
-          <h2 class="burger-title">BILLS</h2>
-          <p class="burger-ingredients">huxtaburger with bacon, egg, pineapple &amp; beetroot</p>
-        </div>
-
-        <div class="burger-item">         
-          <div class="burger rudy burger--small" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$5</div>
-            <img class="burger--rudy-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-40">
-            <img class="burger--rudy-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/lettuce.png" data-direction="up" data-end="-20">
-            <img class="burger--rudy-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tomato--1.png" data-direction="up" data-end="-5">
-            <img class="burger--rudy-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/cheese--1.png" data-direction="down" data-end="15">
-            <img class="burger--rudy-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/patty--3.png" data-direction="down" data-end="35">
-            <img class="burger--rudy-06" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--2.png" data-direction="down" data-end="60">
-            <div class="burger__shadow--rudy js__shadow"></div>
-          </div>
-          <h2 class="burger-title">RUDY</h2>
-          <p class="burger-ingredients"><span class="dull">for the kids</span><br>pattie, tomato sauce, mayo, lettuce, tomato</p>
-        </div>
-
-        <div class="burger-item">     
-          <div class="burger theo" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$12.5</div>
-            <img class="burger--theo-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-100">
-            <img class="burger--theo-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/lettuce.png" data-direction="up" data-end="-85">
-            <img class="burger--theo-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bacon.png" data-direction="up" data-end="-60">
-            <img class="burger--theo-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tomato--1.png" data-direction="up" data-end="-40">
-            <img class="burger--theo-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/cheese--1.png" data-direction="up" data-end="-20">
-            <img class="burger--theo-06" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/patty--3.png" data-direction="down" data-end="5">
-            <img class="burger--theo-07" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bacon.png" data-direction="down" data-end="22">
-            <img class="burger--theo-08" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/cheese--2.png" data-direction="down" data-end="40">
-            <img class="burger--theo-09" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/patty--4.png" data-direction="down" data-end="60">
-            <img class="burger--theo-10" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/pickles.png" data-direction="down" data-end="90">
-            <img class="burger--theo-11" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--1.png" data-direction="down" data-end="96">
-            <div class="burger__shadow--theo js__shadow"></div>
-          </div>
-          <h2 class="burger-title">THEO</h2>
-          <p class="burger-ingredients">huxtaburger with bacon, double pattie, double cheese, bbq sauce</p>
-        </div>
-
-        <div class="burger-item">
-          <div class="burger denise" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$10</div>
-            <img class="burger--denise-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-70">
-            <img class="burger--denise-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/lettuce.png" data-direction="up" data-end="-50">
-            <img class="burger--denise-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/peppers.png" data-direction="up" data-end="-20">
-            <img class="burger--denise-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tomato--2.png" data-direction="up" data-end="-10">
-            <img class="burger--denise-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/cheese--1.png" data-direction="down" data-end="10">
-            <img class="burger--denise-06" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/patty--1.png" data-direction="down" data-end="36">
-            <img class="burger--denise-07" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/pickles.png" data-direction="down" data-end="64">
-            <img class="burger--denise-08" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--1.png" data-direction="down" data-end="70">
-            <div class="burger__shadow--denise js__shadow"></div>
-          </div>
-          <h2 class="burger-title">DENISE</h2>
-          <p class="burger-ingredients"><span class="dull">the hot one</span><br>huxtaburger with jalapeno &amp; sriracha mayo</p>
-        </div>
-        
-        <div class="burger-item">
-
-          <div class="burger sondra" data-state="closed" style="">
-            <div class="burger__price js__fade-out">$9.5</div>
-            <img class="burger--sondra-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__top.png" data-direction="up" data-end="-35">
-            <img class="burger--sondra-02" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/lettuce.png" data-direction="up" data-end="-15">
-            <img class="burger--sondra-03" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tomato--1.png" data-direction="down" data-end="5">
-            <img class="burger--sondra-04" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/tofu.png" data-direction="down" data-end="25">
-            <img class="burger--sondra-05" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/bun__bottom--3.png" data-direction="down" data-end="45">
-            <div class="burger__shadow--sondra js__shadow"></div>
-          </div>
-
-          <h2 class="burger-title">SONDRA</h2>
-          <p class="burger-ingredients">tofu burger with sesame <span class="nowrap">soy mayo</span></p>
-
-        </div>
-
-        <div class="burger-item">
-
-          <div class="burger chips" data-state="closed" style="">
-            <div class="chip-animation"></div>
-            <img class="burger--chips-01" src="/web/20140923082242im_/http://www.huxtaburger.com.au/assets/img/chips.png">
-            <div class="chips__shadow js__shadow"></div>
-          </div>
-
-          <h2 class="burger-title">CHIPS</h2>
-          <p class="burger-ingredients">crinkle cut chips<br>small $2.5, bigger $3<br><span class="dull">chipotle fries on request</span></p>
-
-        </div>
-
-        <div class="burger-item">
-          <h2 class="burger-title">EXTRAS</h2>
-          <p class="burger-ingredients">gluten free bun $3</p>
-        </div>        
       </div>
   </div>
   

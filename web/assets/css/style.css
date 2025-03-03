@@ -167,6 +167,14 @@ p, span{
     /*font-family: "bignoodletitling";*/
     padding-top: 20px;
 }
+
+.screen__title::after {
+    /* display: block;
+    content: "★ ★ ★ ★ ★";
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1rem; */
+}
 @media (min-width: 48em) {
     .screen__title {
         font-size: 48px;
@@ -247,34 +255,6 @@ p, span{
     cursor: default;
 }
 
-.burger-group-title {
-    margin-top: 1rem;
-}
-
-.burger-group-title h2 {
-    margin-top: 1rem;
-    border-bottom: 2px solid white;
-    display: inline-block;
-    text-transform: uppercase;
-    /*  */
-}
-
-.burger-item {
-    margin-top: .75rem;
-}
-@media (min-width: 48em) {
-    .burger-item {
-        margin-top: 1rem;
-    }
-}
-/* .burger-item + .burger-item {
-    margin-top: 60px;
-}
-@media (min-width: 48em) {
-    .burger-item + .burger-item {
-        margin-top: 90px;
-    }
-} */
 .star::after {
     color: white;
     content: "★";
@@ -288,17 +268,46 @@ p, span{
         line-height: 4.2;
     }
 }
+
+.burger-group-title {
+    margin-block: 2rem;
+}
+
+.burger-group-title h2 {
+    line-height: 1;
+    display: inline-block;
+}
+
+/* .burger-group-title::before, */
+.burger-group-title::after {
+    display: block;
+    content: "★ ★ ★";
+}
+
+.burger-group-title::after {
+    margin-top: .5rem;
+}
+
+/* .burger-group-item-list {
+    
+} */
+
 .burger-title {
     font-size: 24px;
     line-height: 1.2;
     margin-bottom: 4px;
 }
-.burger-item::after {
-    font-size: 12px;
+
+.burger-item {
+    margin-block: 1rem;
+}
+
+.burger-item + .burger-item::before {
+    font-size: 1rem;
     display: block;
     text-align: center;
-    content: "\2605";
-    line-height: 2.2;
+    content: "★";
+    margin-block: 1.25rem;
 }
 
 
