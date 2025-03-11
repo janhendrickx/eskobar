@@ -1,0 +1,530 @@
+import gulp from 'gulp';
+import gulpif from 'gulp-if';
+
+import browserSync from 'browser-sync';
+const browserSyncServer = browserSync.create();
+
+import * as dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
+
+import concat from 'gulp-concat';
+import purgecss from '@fullhuman/postcss-purgecss'
+import notify from 'gulp-notify';
+import postcss from 'gulp-postcss';
+import sourcemaps from 'gulp-sourcemaps';
+import uglify from 'gulp-uglify';
+import { deleteAsync } from 'del';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
+import svgSymbols from 'gulp-svg-symbols';
+import stylelint from '@ronilaukkarinen/gulp-stylelint';
+import streamToPromise from 'gulp-stream-to-promise';
+import { exec } from 'node:child_process';
+//import log from 'fancy-log';
+
+import config from './gulpfile-config.mjs';
+
+function reload(done) {
+    browserSyncServer.reload();
+    done();
+}
+
+// doPurgeCss is set to false in certain task series
+// by running the task dontPurgeCSS first
+let doPurgeCss = true;
+
+gulp.task('dontPurgeCSS', function(done) {
+    doPurgeCss = false;
+    done();
+});
+
+// doCreateSourceMaps is set to true in certain task series
+// by running the task createSourceMaps first
+let doCreateSourceMaps = false;
+
+gulp.task('createSourceMaps', function(done) {
+    doCreateSourceMaps = true;
+    done();
+});
+
+
+// ENV check is replaced by task "createSourceMaps"
+
+// Check ENV, only enable sourcemaps for local and staging
+// const useSourceMaps = function() {
+
+//     let useSourceMaps = false;
+
+//     if (process.env.ENVIRONMENT) {
+//         if (process.env.ENVIRONMENT.indexOf("local") !== -1
+//             || process.env.ENVIRONMENT.indexOf("staging") !== -1
+//         ) {
+//             useSourceMaps = true;
+//         }
+//     }
+
+//     return useSourceMaps;
+// }
+
+gulp.task('lint-twig', function(cb) {
+
+    const verbose = config.linttwig.opts.verbose ?? false;
+
+    exec('php vendor/bin/twig-cs-fixer lint ' + config.linttwig.src + ' --ansi', { env: { error: { stackTraceLimit: 0 } } }, function (err, stdout, stderr) {
+        // Output "All OK" message
+        if(verbose) {
+            console.log(stdout);
+        }
+        if(err) {
+            // Do not output Node error stacktrace
+            Error.stackTraceLimit = 0;
+            // But do output the lint-errors
+            console.log(stdout);
+            // Some kind of weird workaround for gulp watch, makes sure to output
+            // the error correctly everytime a twig file is changed
+            // If we don't do this, the error will only be shown the first time.
+            cb('There was an error');
+        }
+        cb();
+    });
+
+});
+
+gulp.task('lint-sass', function() {
+    return gulp.src(config.lintsass.src)
+        .pipe(stylelint({
+            configFile: '.stylelintrc',
+            reporters: [
+                { formatter: 'string', console: true }
+            ]
+        }));
+});
+
+gulp.task('output-deploypathsforrobacraft', function(cb) {
+    process.stdout.write(config.deploypathsforrobacraft.join(' ') + '\n');
+    cb();
+});
+
+// Compile sass into CSS & auto-inject into browsers
+gulp.task('sass', function () {
+    // array to contain each single combining operation
+    var tasks = []
+
+    // Define postCss here, because it's used in 2 places
+    var postCssPipe = [
+        autoprefixer(),
+        cssnano({
+            preset: ["default", { discardComments: { removeAll: true } }]
+        })
+    ]
+
+    if(doPurgeCss) {
+
+        postCssPipe.push(
+            purgecss({
+                content: config.purgecss.content,
+                skippedContentGlobs: config.purgecss.skippedContentGlobs,
+                safelist: config.purgecss.safelist,
+                fontFace: config.purgecss.fontFace,
+                keyframes: config.purgecss.keyframes,
+                variables: config.purgecss.variables,
+                extractors: [{
+                    extractor: content => content.match(/[A-z0-9-:\/]+/g) || [], extensions: ['html', 'js', 'php', 'twig']
+                }]
+        }))
+    }
+
+    //for (let style in build.styles) {
+    for (let style in config.bundler.styles) {
+
+        if (typeof (config.bundler.styles[style]) == 'object') {
+
+            Object.keys(config.bundler.styles[style]).forEach(function (elem) {
+                //console.log('combining ' + build.scripts[style][elem] + ' into ' + elem);
+
+                // get a gulp stream for a combining operation
+                let stream = gulp.src(config.bundler.styles[style][elem])
+                    .pipe(gulpif(doCreateSourceMaps, sourcemaps.init()))
+                    .pipe(sass.sync({outputStyle: 'expanded'}).on('error', function (err) {
+                        notify.onError("Error: <%= error.message %>");
+                        return notify().write(err);
+                    }))
+                    .pipe(concat(elem))
+                    .pipe(postcss(postCssPipe))
+                    .pipe(gulpif(doCreateSourceMaps, sourcemaps.write(".")))
+                    .pipe(gulp.dest(config.build.path + '/' + config.sass.dest))
+                    .pipe(browserSyncServer.stream());
+
+                // convert this gulp stream to a promise
+                let promise = streamToPromise(stream)
+
+                // put into the array
+                tasks.push(promise)
+            });
+
+        } else {
+            //console.log('moving ' + build.styles[style]);
+
+            // get a gulp stream for a combining operation
+            let stream = gulp.src(config.bundler.styles[style])
+                .pipe(gulpif(doCreateSourceMaps, sourcemaps.init()))
+                .pipe(postcss(postCssPipe))
+                .pipe(gulpif(doCreateSourceMaps, sourcemaps.write(".")))
+                .pipe(gulp.dest(config.build.path + '/' + config.sass.dest))
+                .pipe(browserSyncServer.stream());
+
+            // convert this gulp stream to a promise
+            let promise = streamToPromise(stream)
+
+            // put into the array
+            tasks.push(promise)
+        }
+    }
+
+    // return the combined promise to complete the task function
+    return Promise.all(tasks)
+});
+
+// Move the javascript files into our /html/js folder
+gulp.task('js', function () {
+    // array to contain each single combining operation
+    var tasks = []
+
+    for(let script in config.bundler.scripts) {
+
+        if (typeof(config.bundler.scripts[script]) == 'object') {
+
+            Object.keys(config.bundler.scripts[script]).forEach(function (elem) {
+                //console.log('combining ' + build.scripts[script][elem] + ' into ' + elem);
+
+                // get a gulp stream for a combining operation
+                let stream = gulp.src(config.bundler.scripts[script][elem])
+                    .pipe(gulpif(doCreateSourceMaps, sourcemaps.init()))
+                    .pipe(concat(elem))
+                    .pipe(uglify())
+                    .pipe(gulpif(doCreateSourceMaps, sourcemaps.write(".")))
+                    .pipe(gulp.dest(config.build.path + '/' + config.js.dest));
+
+                // convert this gulp stream to a promise
+                let promise = streamToPromise(stream)
+
+                // put into the array
+                tasks.push(promise)
+            });
+
+        } else {
+            //console.log('moving ' + build.scripts[script]);
+
+            // get a gulp stream for a combining operation
+            let stream = gulp.src(config.bundler.scripts[script])
+                .pipe(gulpif(doCreateSourceMaps, sourcemaps.init()))
+                .pipe(uglify())
+                .pipe(gulpif(doCreateSourceMaps, sourcemaps.write(".")))
+                .pipe(gulp.dest(config.build.path + '/' + config.js.dest));
+
+            // convert this gulp stream to a promise
+            let promise = streamToPromise(stream)
+
+            // put into the array
+            tasks.push(promise)
+        }
+    }
+
+    // return the combined promise to complete the task function
+    return Promise.all(tasks)
+});
+
+// Move custom fonts
+gulp.task('fonts', function () {
+    return gulp.src(config.fonts.src)
+        .pipe(gulp.dest(config.build.path + '/' + config.fonts.dest));
+});
+
+// Optimize images
+gulp.task('imagemin', function () {
+
+    return gulp.src(config.imagemin.src)
+        .pipe(imagemin([
+            gifsicle(
+                (config.imagemin.opts.gifsicle ?? { interlaced: true })
+            ),
+            mozjpeg(
+                (config.imagemin.opts.mozjpeg ?? { quality: 92, progressive: true })
+            ),
+            optipng(
+                (config.imagemin.opts.optipng ?? { optimizationLevel: 7 })
+            ),
+            svgo(
+                (config.imagemin.opts.svgo ?? {
+                    multipass: true,
+                    plugins: [
+                        {
+                            name: 'removeViewBox',
+                            active: false
+                        },
+                        {
+                            name: 'cleanupIDs',
+                            active: true
+                        },
+                        {
+                            name: "sortAttrs",
+                            params: {
+                                xmlnsOrder: "alphabetical",
+                            },
+                        },
+                    ]
+                })
+            )
+        ], {
+            verbose: (config.imagemin.opts.verbose ?? false)
+        }))
+        .pipe(gulp.dest(config.build.path + '/' + config.imagemin.dest));
+});
+
+// Icons sprite
+gulp.task('iconsprite', function () {
+    return gulp.src(config.iconsprite.src)
+        .pipe(imagemin([
+            svgo({
+                multipass: true,
+                plugins: [
+                    {
+                        name: 'removeViewBox',
+                        active: false
+                    },
+                    {
+                        name: 'cleanupIDs',
+                        active: true
+                    },
+                    {
+                        name: "removeAttrs",
+                        params: {
+                            attrs: ["path:(fill|stroke)", "fill"],
+                        },
+                    },
+                    {
+                        name: "addAttributesToSVGElement",
+                        params: {
+                            attributes: [
+                                {
+                                    fill: "currentColor",
+                                }
+                            ],
+                        },
+                    },
+                    {
+                        name: "sortAttrs",
+                        params: {
+                            xmlnsOrder: "alphabetical",
+                        },
+                    },
+                ]
+            })
+        ], {
+            verbose: false
+        }))
+        .pipe(svgSymbols({
+            templates: ['default-svg']
+        }))
+        .pipe(concat('sprite.svg'))
+        .pipe(gulp.dest(config.build.path + '/' + config.iconsprite.dest));
+});
+
+// Create favicons
+// Ref. https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
+// To prevent weird imagick conversion artifacts when using only a source .svg,
+// both source .svg and .png are required.
+// The source .svg will be used as icon.svg
+// The source .png will be used for .ico and .png
+gulp.task('buildfavicons', function (cb) {
+
+    const appletouchiconBackgroundcolor = (config.favicons.opts.appletouchiconbackgroundcolor ?? '#FFFFFF')
+    const verbose = config.favicons.opts.verbose ?? false;
+
+    const commands = [
+        'mkdir -p ' + config.build.path + '/' + config.favicons.dest,
+        // .svg copy as icon.svg
+        'echo Creating icon.svg',
+        'cp ' + config.favicons.src.svg + ' ' + config.build.path + '/' + config.favicons.dest + '/icon.svg',
+        // .png to 32x32 and 16x16 into one single favicon.ico
+        'echo Creating favicon.ico',
+        'convert -define icon:auto-resize=32,16 ' + config.favicons.src.png + ' ' + config.build.path + '/' + config.favicons.dest + '/favicon.ico',
+        // .png to .png
+        'echo Creating icon-512.png and icon-192.png',
+        'convert -resize 512x512 ' + config.favicons.src.png + ' ' + config.build.path + '/' + config.favicons.dest + '/icon-512.png',
+        'convert -resize 192x192 ' + config.favicons.src.png + ' ' + config.build.path + '/' + config.favicons.dest + '/icon-192.png',
+        // .png to apple-touch-icon.png with 20px padding (looks better)
+        'echo Creating apple-touch-icon.png with backgroundcolor "' + appletouchiconBackgroundcolor + '"',
+        'convert -shave 1x1 -border 20 -resize 180x180 -bordercolor "' + appletouchiconBackgroundcolor + '" -background "' + appletouchiconBackgroundcolor + '" ' + config.favicons.src.png + ' ' + config.build.path + '/' + config.favicons.dest + '/apple-touch-icon.png',
+    ];
+
+    exec(commands.join(' && '), function (err, stdout, stderr) {
+        if(verbose) {
+            console.log(stdout);
+        }
+        console.log(stderr);
+        cb(err);
+    });
+});
+
+// Optimize favicons
+gulp.task('optimizefavicons', function () {
+
+    return gulp.src(config.build.path + '/' + config.favicons.dest + '/*.{svg,ico,png}')
+        .pipe(imagemin([
+            optipng(
+                (config.favicons.opts.optipng ?? { optimizationLevel: 7 })
+            ),
+            svgo(
+                (config.favicons.opts.svgo ?? {
+                    multipass: true,
+                    plugins: [
+                        {
+                            name: 'removeViewBox',
+                            active: false
+                        },
+                        {
+                            name: 'cleanupIDs',
+                            active: true
+                        },
+                        {
+                            name: "sortAttrs",
+                            params: {
+                                xmlnsOrder: "alphabetical",
+                            },
+                        },
+                    ]
+                })
+            )
+        ], {
+            verbose: (config.favicons.opts.verbose ?? false)
+        }))
+        .pipe(gulp.dest(config.build.path + '/' + config.favicons.dest));
+});
+
+gulp.task('favicons',
+    gulp.series(
+        'buildfavicons',
+        'optimizefavicons'
+    )
+);
+
+gulp.task('cleantargetdirs', function () {
+    let cleanPaths = [];
+
+    config.cleantargetdirs.forEach(function(targetdir) {
+        //console.log("Cleaning " + targetdir);
+        cleanPaths.push(targetdir + '/**');
+        cleanPaths.push('!' + targetdir);
+    });
+
+    return deleteAsync(cleanPaths);
+});
+
+gulp.task('cleanbuilddirs', function () {
+    return deleteAsync([
+        config.build.path + '/**',
+        '!' + config.build.path
+    ]);
+});
+
+gulp.task('copybuildtotarget', function () {
+    return gulp.src(config.build.path + '/web/**/*')
+        .pipe(gulp.dest('web'));
+});
+
+gulp.task('movebuildtotarget',
+    gulp.series(
+        'copybuildtotarget',
+        'cleanbuilddirs'
+    )
+);
+
+gulp.task('stopongulpconfigchange', function(cb) {
+    throw new Error('Stopping. Gulpfile-config.mjs was changed. Please restart the script.')
+});
+
+gulp.task('production',
+    gulp.series(
+        // 'js',
+        // 'sass',
+        gulp.parallel(
+            gulp.series('js', 'sass'),
+            'imagemin',
+            'favicons',
+            'iconsprite',
+            'fonts'
+        ),
+        'cleantargetdirs',
+        'movebuildtotarget',
+    )
+);
+
+gulp.task('dev',
+    gulp.series(
+        'lint-twig',
+        'lint-sass',
+        'createSourceMaps',
+        'production'
+    )
+);
+
+gulp.task('dev-nopurge',
+    gulp.series(
+        'dontPurgeCSS',
+        'dev'
+    )
+);
+
+// Static Server + watching scss/html files
+gulp.task('serve', gulp.series('dev', function browsersync() {
+    browserSyncServer.init({
+        proxy: {
+            target: 'nginx:80',
+            proxyOptions: {
+                changeOrigin: false
+            },
+            proxyReq: [
+                function(proxyReq) {
+                    proxyReq.setHeader('Access-Control-Allow-Origin', 'http://localhost http://localhost:80 http://localhost:3000');
+                }
+            ]
+        },
+        rewriteRules: [{
+            match: /http\:\/\/localhost(?!:)/g,
+            fn: function (req, res, match) {
+                return 'http://localhost:3000';
+            }
+        }],
+        //logLevel: 'debug',
+        //proxy: 'nginx',
+        //host: 'localhost',
+        open: false,
+        notify: false,
+        ui: false
+    });
+
+    // Speed up trick
+    // When watching for changes in the html/twig files,
+    // only rebuild sass when css is purged
+    let templateGulpSeries = ['lint-twig', reload];
+    if(doPurgeCss) {
+        templateGulpSeries = ['lint-twig', 'sass', 'movebuildtotarget', reload];
+    }
+
+    gulp.watch(config.watch.templates, gulp.series(templateGulpSeries));
+    // gulp.watch(config.watch.sass, gulp.series('lint-sass', 'sass', 'movebuildtotarget', reload));
+    gulp.watch(config.watch.sass, gulp.series('lint-sass', 'sass', 'movebuildtotarget'));
+    gulp.watch(config.watch.js, gulp.series('js', 'sass', 'movebuildtotarget', reload));
+    gulp.watch(config.watch.images, gulp.series('imagemin', 'movebuildtotarget', reload));
+    gulp.watch(config.watch.icons, gulp.series('iconsprite', 'movebuildtotarget', reload));
+    gulp.watch(config.watch.favicon, gulp.series('favicons', 'movebuildtotarget', reload));
+    gulp.watch(config.watch.fonts, gulp.series('fonts', 'movebuildtotarget', reload));
+    gulp.watch(['gulpfile-config.mjs'], gulp.series('stopongulpconfigchange'));
+}));
+
+gulp.task('fast', gulp.series('dontPurgeCSS', 'serve'));
+
+gulp.task('default', gulp.series('serve'));

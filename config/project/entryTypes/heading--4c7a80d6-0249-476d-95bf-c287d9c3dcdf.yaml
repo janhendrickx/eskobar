@@ -35,6 +35,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2025-03-06T18:47:15+00:00'
+            elementCondition: null
+            fieldUid: 130f9745-bb01-4272-b43e-5c73a05a62f5 # Extra
+            handle: null
+            includeInCards: false
+            instructions: 'Deze (korte) tekst wordt (iets kleiner) onder de titel getoond'
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2745aa45-b3be-4e68-98f6-18cfaa805be0
+            userCondition: null
+            warning: null
+            width: 100
         name: Inhoud
         uid: eec2e347-833a-408e-9513-0d80283b974a
         userCondition: null
