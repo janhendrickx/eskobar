@@ -1,0 +1,29 @@
+{% set contentBlocks = entry.contentMatrix.all() %}
+
+<div class="btn-wrapper btn-wrapper-left">
+    <button class="btn btn-left btn-burger" onclick="navigate('menu')">
+        <div class="btn-inner">
+            <img class="btn-icon" src="assets/img/menu.png" alt="hamburger menu icon" />
+            <span>Menu</span>
+        </div>
+    </button>
+</div>
+
+<div class="home-inner">
+    <div class="logo">
+        <img src="assets/img/logo.svg" />
+    </div>
+    
+    <img src="assets/img/eskobar.svg" alt="eskobar logo" class="eskobar-logo-text" />
+    <h5 class="logo-baseline">{{ entry.title }}</h5>
+    {% include 'blocks/contentMatrix.twig' with contentBlocks %}
+</div>
+
+<div class="btn-wrapper btn-wrapper-right">
+    <button class="btn btn-right btn-info" onclick="navigate('info')">
+        <div class="btn-inner">
+            <img class="btn-icon" src="assets/img/info-icon.png" alt="info icon"/>
+            <span>Info</span>
+        </div>
+    </button>
+</div>

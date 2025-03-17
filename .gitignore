@@ -3,3 +3,5 @@
 /vendor
 .DS_Store
 node_modules
+templates/content-bu/*
+web/assets/backup/*

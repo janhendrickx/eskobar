@@ -1,0 +1,129 @@
+.burger-group {
+    margin-block: 2.5rem;
+    @media (max-width: 48em) {
+        margin-block: 1.5rem;
+    }
+}
+
+.burger-group-title {
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+    @media (max-width: 48em) {
+        margin-block: 1.5rem;
+    }
+    h2 {
+        line-height: 1;
+        display: inline-block;
+        font-weight: bold;
+        color: var(--light);
+        &::after {
+            display: inline-block;
+            content: "★ ★ ★";
+            color: var(--red);
+            position: absolute;
+            font-size: 2rem;
+            bottom: -2rem;
+            left: 0;
+            width: 100%;
+        }
+    }
+}  
+
+.burger-heading {
+    color: var(--light);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 48em) {
+        display: inline-block;
+    }
+}
+
+.burger-extra {
+    line-height: 1;
+    display: flex;
+    @media (max-width: 48em) {
+        margin-block: .25rem;
+        display: inline-flex;
+    }
+
+    &::before,
+    &::after {
+        font-size: 1rem;
+        display: block;
+        margin-inline: 0.5rem;
+        @media (max-width: 48em) {
+            content: "-";
+        }
+    }
+}
+.burger-title {
+    font-size: 24px;
+    line-height: 1;
+}
+  
+.burger-item {
+    margin-block: 0.75rem;
+    @media (max-width: 48em) {
+        margin-block: .5rem;
+    }
+    &:not(:last-of-type)::after {
+        margin-top: 0.75rem;
+        color: var(--light);
+        content: "★";
+        display: block;
+        font-size: 1.5rem;
+        text-align: center;
+        @media (max-width: 48em) {
+            margin-top: 0.5rem;
+        }
+      }
+}
+    
+.burger-subtitle {
+    color: #81cded;
+}
+  
+.burger-ingredients {
+    color: var(--dark);
+}
+
+.burger-subtitle,
+.burger-ingredients {
+    /*font-family: "Akzidenz Medium";*/
+    margin: 0 auto;
+    max-width: 992px;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+@media (min-width: 48em) {
+    .burger-subtitle, .burger-ingredients {
+        padding: 0;
+    }
+}
+.burger-list {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.star::after {
+    color: white;
+    content: "★";
+    display: block;
+    font-size: 12px;
+    line-height: 3;
+    text-align: center;
+  }
+  
+  @media (min-width: 48em) {
+    .star::after {
+      line-height: 4.2;
+    }
+  }

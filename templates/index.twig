@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 {% include 'base/head.twig' %}
-    <body>
-        <div id="js__media-check"></div>
-        <div class="site__content">
-            
-
-            <div class="burger__screen">
+<body>
+    <div class="container" id="container">        
+            <div class="section menu">
                 {% include 'content/menu.twig' %}
             </div>
-
-            <div class="home__screen">
-                {% include 'blocks/navigation.twig' %}
-                {% include 'content/main.twig' %}
-                {% include 'blocks/footer.twig' %}
+            <div class="section home">
+                {% include 'content/home.twig' %}
+                {# {% include 'blocks/footer.twig' %} #}
             </div>
-            <div class="store__screen">
-                {% include 'content/info.twig' %}
+            <div class="section info">
+                <h1>Info</h1>
+                <div class="btn-wrapper btn-wrapper-left">
+                    <button class="btn btn-left btn-back" onclick="navigate('home')">
+                        <div class="btn-inner">
+                            <img class="btn-icon" src="assets/img/back--left.png" alt="back icon"/>
+                            <span>Terug</span>
+                        </div>
+                    </button>
+                </div>
+                {# {% include 'content/info.twig' %} #}
             </div>
-        </div>
         {% include 'scripts/scripts.twig' %}
+    </div>
     </body>
 </html>

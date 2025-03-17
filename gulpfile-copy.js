@@ -56,7 +56,7 @@ function initBrowserSync(done) {
 // Watch voor wijzigingen
 function watchFiles(done) {
     watch('web/assets/sass/**/*.scss', series(compileSass, minifyCSS));
-    watch('web/assets/css/**/*.css').on('change', browserSync.reload);
+    // watch('web/assets/css/**/*.css').on('change', browserSync.reload);
     watch('templates/**/*.twig').on('change', browserSync.reload);
     done();
 }
