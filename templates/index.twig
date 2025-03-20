@@ -11,18 +11,9 @@
                 {# {% include 'blocks/footer.twig' %} #}
             </div>
             <div class="section info">
-                <h1>Info</h1>
-                <div class="btn-wrapper btn-wrapper-left">
-                    <button class="btn btn-left btn-back" onclick="navigate('home')">
-                        <div class="btn-inner">
-                            <img class="btn-icon" src="assets/img/back--left.png" alt="back icon"/>
-                            <span>Terug</span>
-                        </div>
-                    </button>
-                </div>
-                {# {% include 'content/info.twig' %} #}
+                {% include 'content/info.twig' %}
             </div>
-        {% include 'scripts/scripts.twig' %}
     </div>
+    {% include 'scripts/scripts.twig' %}
     </body>
 </html>

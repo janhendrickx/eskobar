@@ -31,25 +31,25 @@ body, html {
     align-items: center;
     flex-shrink: 0;
     position: relative;
-}
-
-.home {
-    background-color: var(--green);
-    background-image: url("/assets/img/pattern--green.png");
     background-repeat: repeat;
     background-size: 35px 59px;
 }
 
-.menu {
-    background-color: var(--blue);
-    background-image: url("/assets/img/pattern--blue.png");
-    background-repeat: repeat;
-    background-size: 35px 59px;
+.section-inner {
+    width: 60rem;
+    padding-bottom: 2.5rem;
+    padding-top: 1.25rem;
+    color: var(--light);
+    text-align: center;
+    position: fixed;
+    top: 2.5rem;
 }
 
-.info {
-    background-color: var(--red);
-    background-image: url("/assets/img/pattern--red.png");
-    background-repeat: repeat;
-    background-size: 35px 59px;
+.bordered-block {
+    padding: 2rem;
+    border: 1px solid var(--light);
+}
+
+.margin-block-0 {
+    margin-block: 0;
 }

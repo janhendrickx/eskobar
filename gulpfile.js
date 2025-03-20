@@ -40,7 +40,7 @@ function minifyCSS() {
 function initBrowserSync(done) {
     browserSync.init({
         proxy: {
-            target: "https://eskobar.local", // Zorg ervoor dat dit je lokale domein is
+            target: "http://eskobar.local", // Zorg ervoor dat dit je lokale domein is
             proxyReq: [
                 function(proxyReq) {
                     proxyReq.setHeader('Host', 'eskobar.local');
@@ -49,25 +49,22 @@ function initBrowserSync(done) {
         },
         notify: false,
         open: false,
-        files: [
-            'web/assets/css/**/*.css',
-            'templates/**/*.twig'
-        ],
+        files: [],
         host: "eskobar.local",
         port: 3000,
-        https: {
-            key: keyPath,
-            cert: certPath
-        },
+        https: false,
+        // https: {
+        //     key: keyPath,
+        //     cert: certPath
+        // },
     });
     done();
 }
 
 // Watch voor wijzigingen
 function watchFiles() {
-    watch('web/assets/sass/**/*.scss', series(compileSass, minifyCSS));
-    watch('web/assets/css/**/*.css').on('change', browserSync.reload);
-    watch('templates/**/*.twig').on('change', browserSync.reload);
+    watch('web/assets/sass/**/*.scss', series(compileSass, minifyCSS)); // Genereert style.css en min.css
+    watch('web/assets/css/style.min.css').on('change', browserSync.reload); // Alleen minified bestand monitoren
 }
 
 // Default task

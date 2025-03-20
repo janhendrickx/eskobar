@@ -4,13 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const buttons = document.querySelectorAll('.btn-back');
         if (target === 'menu') {
             container.style.transform = 'translateX(0)'; // Ga naar Menu
-            console.log('menu: ', target);
         } else if (target === 'home') {
             container.style.transform = 'translateX(-100%)'; // Ga naar Home
-            console.log('home');
         } else if (target === 'info') {
             container.style.transform = 'translateX(-200%)'; // Ga naar Info
-            console.log('info');
         }
     };
 });

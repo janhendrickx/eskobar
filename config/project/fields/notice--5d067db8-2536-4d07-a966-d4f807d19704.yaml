@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: notice
+instructions: null
+name: Melding
+searchable: true
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 9cae0250-7f3f-4567-aaa2-378d5a8f0ef6 # Melding
+  includeTableView: false
+  maxEntries: 1
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

@@ -146,7 +146,7 @@ fieldLayouts:
                   value: true
               elementType: craft\elements\Entry
               fieldContext: global
-            fieldUid: 5d067db8-2536-4d07-a966-d4f807d19704 # Kader
+            fieldUid: 5d067db8-2536-4d07-a966-d4f807d19704 # Melding
             handle: null
             includeInCards: false
             instructions: 'Dit is het kadertje met de witte boord (om verlof in aan te geven)'
