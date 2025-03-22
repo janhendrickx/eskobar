@@ -1,0 +1,21 @@
+{% set contentBlocks = entry.contentMatrix.all() ?? null %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+{% include 'base/head.twig' %}
+<body>
+    <div class="container-temp">        
+            <div class="section home">
+                <div class="section-inner">
+                    <div class="logo">
+                        <img src="assets/img/logo.svg" />
+                    </div>    
+                    <img src="assets/img/eskobar.svg" alt="eskobar logo" class="eskobar-logo-text" />
+                    <h2 class="logo-baseline">{{ entry.title }}</h2>
+                    {% include 'blocks/contentMatrix.twig' with contentBlocks %}
+                </div>
+            </div>
+    </div>
+    {% include 'scripts/scripts.twig' %}
+    </body>
+</html>
