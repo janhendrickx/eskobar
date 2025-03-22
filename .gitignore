@@ -5,3 +5,4 @@
 node_modules
 templates/content-bu/*
 web/assets/backup/*
+web/assets/cert/*
