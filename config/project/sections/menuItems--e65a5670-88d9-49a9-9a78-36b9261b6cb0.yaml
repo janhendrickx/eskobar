@@ -5,9 +5,9 @@ entryTypes:
     uid: 940e46c6-2d30-4fcb-9c38-be18c9ac6319 # Menu item
   -
     uid: 4c7a80d6-0249-476d-95bf-c287d9c3dcdf # Titel
-handle: menu
+handle: menuItems
 maxAuthors: 1
-name: Menu
+name: 'Menu items'
 previewTargets:
   -
     __assoc__:

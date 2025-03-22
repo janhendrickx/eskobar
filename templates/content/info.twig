@@ -1,55 +1,61 @@
-{# <div class="store__screen"> #}
-        {# <div class="screen__content">
-            <div id="burgers" class="burger-group"> #}
+{% set streetNr = info.streetNr ?? null %}
+{% set zip = info.zip ?? null %}
+{% set city = info.city ?? null %}
+{% set btwNr = "BTW:: " ~ info.btwNr ?? null %}
+{% set notice = info.notice ?? null %}
+{% set info = info.info ?? null %}
+{% set googleMaps = info.googleMaps ?? null %}
 
-<div class="btn-wrapper btn-wrapper-left">
-    <button class="btn btn-left btn-back" onclick="navigate('home')">
-        <div class="btn-inner">
-            <img class="btn-icon" src="assets/img/back--left.png" alt="back icon"/>
-            <span>Terug</span>
-        </div>
-    </button>
-</div>
-
-<div class="section-inner">          
-
-    <img src="assets/img/eskobar.svg" alt="eskobar logo" class="logo" />
-    <div class="info-address">
-        <p>{{ info.streetNr }}, {{ info.zip }} {{ info.city }}</p>
-        <p>{{ "BTW:: " ~ info.btwNr }}</p>
+<div class="section info">
+    <div class="btn-wrapper btn-wrapper-left">
+        <button class="btn btn-left btn-back" onclick="navigate('home')">
+            <div class="btn-inner">
+                <img class="btn-icon" src="assets/img/back--left.png" alt="back icon"/>
+                <span>Terug</span>
+            </div>
+        </button>
     </div>
-    {% if info.notice|length %}
-        <div class="info-block info-block-notice">
-            <div class="bordered-block">     
-                {% for block in info.notice %}
-                    {% if block.type == "infoNotice" %}
-                        <h4 class="text-light">{{ block.title }}</h4>
-                        <div class="text-dark">
-                            {{ block.text }}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+
+    <div class="section-inner">          
+
+        <img src="assets/img/eskobar.svg" alt="eskobar logo" class="logo" />
+        <div class="info-address">
+            <p>{{ streetNr }}, {{ zip }} {{ city }}</p>
+            <p>{{ btwNr }}</p>
         </div>
-    {% endif %}
-    <div class="info-blocks-wrapper">  
-        {% for row in info.info %}
-            <div class="info-block">
-                <h4 class="text-light">{{ row.heading }}</h4>
-                <p class="text-dark">{{ row.text|nl2br }}</p>
-                {# {% if loop.last == false %}    
-                    <span class="line loaded" style='margin-block: 1rem;'></span>
-                {% endif %} #}
+        {% if notice|length %}
+            <div class="info-block info-block-notice">
+                <div class="bordered-block">     
+                    {% for block in notice %}
+                        {% if block.type == "infoNotice" %}
+                            <h4 class="text-light">{{ block.title }}</h4>
+                            <div class="text-dark">
+                                {{ block.text }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-        {% endfor %}
+        {% endif %}
+        <div class="info-blocks-wrapper">  
+            {% for row in info %}
+                <div class="info-block">
+                    <h4 class="text-light">{{ row.heading }}</h4>
+                    <p class="text-dark">{{ row.text|nl2br }}</p>
+                    {# {% if loop.last == false %}    
+                        <span class="line loaded" style='margin-block: 1rem;'></span>
+                    {% endif %} #}
+                </div>
+            {% endfor %}
+        </div>
+        
+        {% if googleMaps %}
+            {% set googleMapsUrlLink = googleMaps.googleMaps %}
+            <a class="btn-fancy margin-block-0" href="{{ googleMaps.googleMaps }}" target="_blank">
+                <div class="btn-fancy-inner">
+                    <span class="btn-fancy-text">{{ googleMaps.googleMaps.label }}</span>
+                </div>
+            </a>
+        {% endif %}
     </div>
-    
-    {% if info.googleMaps %}
-        {% set googleMapsUrlLink = info.googleMaps %}
-        <a class="btn-fancy margin-block-0" href="{{ info.googleMaps }}" target="_blank">
-            <div class="btn-fancy-inner">
-                <span class="btn-fancy-text">{{ info.googleMaps.label }}</span>
-            </div>
-        </a>
-    {% endif %}
 </div>

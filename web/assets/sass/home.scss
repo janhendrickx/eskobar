@@ -1,21 +1,35 @@
+@use 'mixins' as mixin;
 .home {
     background-color: var(--green);
     background-image: url("/assets/img/pattern--green.png");
 }
 
-.home-inner {
-    width: 60rem;
-    padding-bottom: 2.5rem;
-    padding-top: 1.25rem;
-    color: var(--light);
-    text-align: center;
-    position: fixed;
-    top: 2.5rem;
-}
+// .home-inner {
+//     width: 60rem;
+//     padding-bottom: 2.5rem;
+//     padding-top: 1.25rem;
+//     color: var(--light);
+//     text-align: center;
+//     position: fixed;
+//     top: 2.5rem;
+// }
 
 .eskobar-logo-text {
-    height: 125px;
     margin-block: 1rem;
+    // height: 40px;
+    width: 20vw;
+    min-width: 300px;
+    @include mixin.media-lg {
+        width: 20vw;
+        // height: 125px;
+    }
+}
+.eskobar-logo {
+    min-width: 125px;
+    width: 10vw;
+    // @include mixin.media-lg {
+    //     height: 125px;
+    // }
 }
 
 .logo-baseline {

@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 2b1b3dcb-0aea-4b32-b903-c03a0490bbc7 # Pagina
-handle: tempPage
+    uid: 4c7a80d6-0249-476d-95bf-c287d9c3dcdf # Titel
+handle: menu
 maxAuthors: 1
-name: 'Tijdelijke pagina'
+name: Menu
 previewTargets:
   -
     __assoc__:
@@ -23,6 +23,6 @@ siteSettings:
   c44f25bd-e99c-4f49-87e4-1ac555445a3b: # Eskobar
     enabledByDefault: true
     hasUrls: true
-    template: _errors/temp.twig
-    uriFormat: temp
+    template: index.twig
+    uriFormat: menu
 type: single

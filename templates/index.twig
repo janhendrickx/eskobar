@@ -1,18 +1,29 @@
+
+{% set menuSection = craft.entries.section('menu').one() %}
+{% set infoSection = craft.entries.section('info').one() %}
+
+{% if menuSection is defined %}
+    {% set onlyHome = 'no-container' %}
+{% else %}
+    {% set onlyHome = 'container' %}
+{% endif %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 {% include 'base/head.twig' %}
 <body>
-    <div class="container" id="container">        
+    <div class="{{ onlyHome }}" id="container">        
+        {% if menuSection %}
             <div class="section menu">
                 {% include 'content/menu.twig' %}
             </div>
+        {% endif %}
             <div class="section home">
                 {% include 'content/home.twig' %}
                 {# {% include 'blocks/footer.twig' %} #}
             </div>
-            <div class="section info">
+            {% if infoSection %}
                 {% include 'content/info.twig' %}
-            </div>
+            {% endif %}
     </div>
     {% include 'scripts/scripts.twig' %}
     </body>

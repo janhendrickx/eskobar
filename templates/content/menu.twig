@@ -1,39 +1,40 @@
-{% set title = "Menu"|upper %}
+{% set menuGoups = craft.entries().section('menuItems').type('heading').all() %}
+{% set menuItems = craft.entries().section('menuItems').type('menuItem') %}
+{% set title = entry.title|upper %}
 
-{% set menuGoups = craft.entries().section('menu').type('heading').all() %}
-{% set menuItems = craft.entries().section('menu').type('menuItem') %}
-
-<div class="btn-wrapper btn-wrapper-right">
-    <button class="btn btn-right" onclick="navigate('home')">
-        <div class="btn-inner">
-            <img class="btn-icon" src="assets/img/back--right.png" alt="back icon"/>
-            <span>Terug</span>
-        </div>
-    </button>
-</div>
-
-<div class="menu-inner">
-  <div class="burger-group">  
-    {% for group in menuGoups %}
-      <div class="burger-group-item">
-        <div class="burger-group-title">
-          <h2>{{ group.title }}</h2>
-        </div>
-        <div class="burger-group-item-list">
-        {% for item in group.children %}
-          {% set price = item.price %}
-          <div class="burger-item">     
-              <p class="burger-price">{{ price ? '€ '~ price }}</p>
-              <div class="burger-heading">
-                <h3 class="burger-title">{{ item.title }}</h3>
-                {% if item.extra %}<p class="burger-extra">{{ item.extra }}</p>{% endif %}
-              </div>
-            {% if item.text|length %}<div class="burger-ingredients">{{ item.text|raw }}</div>{% endif %}
+<div class="section menu">
+  <div class="btn-wrapper btn-wrapper-right">
+      <button class="btn btn-right" onclick="navigate('home')">
+          <div class="btn-inner">
+              <img class="btn-icon" src="assets/img/back--right.png" alt="back icon"/>
+              <span>Terug</span>
           </div>
-          {% endfor %}
+      </button>
+  </div>
+
+  <div class="menu-inner">
+    <div class="burger-group">  
+      {% for group in menuGoups %}
+        <div class="burger-group-item">
+          <div class="burger-group-title">
+            <h2>{{ group.title }}</h2>
           </div>
-        </div>
-      {% endfor %}
+          <div class="burger-group-item-list">
+          {% for item in group.children %}
+            {% set price = item.price %}
+            <div class="burger-item">     
+                <p class="burger-price">{{ price ? '€ '~ price }}</p>
+                <div class="burger-heading">
+                  <h3 class="burger-title">{{ item.title }}</h3>
+                  {% if item.extra %}<p class="burger-extra">{{ item.extra }}</p>{% endif %}
+                </div>
+              {% if item.text|length %}<div class="burger-ingredients">{{ item.text|raw }}</div>{% endif %}
+            </div>
+            {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+    </div>
   </div>
 </div>
 

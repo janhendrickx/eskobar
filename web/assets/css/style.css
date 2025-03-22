@@ -76,19 +76,20 @@
   background-image: url("/assets/img/pattern--green.png");
 }
 
-.home-inner {
-  width: 60rem;
-  padding-bottom: 2.5rem;
-  padding-top: 1.25rem;
-  color: var(--light);
-  text-align: center;
-  position: fixed;
-  top: 2.5rem;
+.eskobar-logo-text {
+  margin-block: 1rem;
+  width: 20vw;
+  min-width: 300px;
+}
+@media (min-width: 992px) {
+  .eskobar-logo-text {
+    width: 20vw;
+  }
 }
 
-.eskobar-logo-text {
-  height: 125px;
-  margin-block: 1rem;
+.eskobar-logo {
+  min-width: 125px;
+  width: 10vw;
 }
 
 .logo-baseline {
@@ -396,13 +397,17 @@ body, html {
 }
 
 .section-inner {
-  width: 60rem;
+  width: 90vw;
   padding-bottom: 2.5rem;
   padding-top: 1.25rem;
   color: var(--light);
   text-align: center;
-  position: fixed;
   top: 2.5rem;
+}
+@media (min-width: 992px) {
+  .section-inner {
+    width: 60rem;
+  }
 }
 
 .bordered-block {

@@ -1,4 +1,4 @@
-dateModified: 1742639266
+dateModified: 1742646887
 email:
   fromEmail: admin@janhendrickx.be
   fromName: Eskobar
@@ -14,7 +14,7 @@ meta:
     9bc116c1-4a3f-4ab5-a101-b2d850599802: Prijs # Prijs
     9cae0250-7f3f-4567-aaa2-378d5a8f0ef6: Melding # Melding
     9d02ce1f-79b8-44ec-a46c-f81e18a52b4d: Knop # Knop
-    031f77bd-afde-4104-87a5-377226a296b2: 'Tijdelijke pagina' # Tijdelijke pagina
+    031f77bd-afde-4104-87a5-377226a296b2: Menu # Menu
     130f9745-bb01-4272-b43e-5c73a05a62f5: Extra # Extra
     548e3f68-624a-44fb-a801-020e085b102a: Inhoud # Inhoud
     910ab6e9-35ce-4942-97f8-70a8cdd26ec1: Titel # Titel
@@ -35,7 +35,7 @@ meta:
     bda95243-a765-44ba-a3e8-4cc60da1c145: Tekst # Tekst
     c44f25bd-e99c-4f49-87e4-1ac555445a3b: Eskobar # Eskobar
     d0e0d958-7098-46b6-8b99-cf083aae26d7: Link # Link
-    e65a5670-88d9-49a9-9a78-36b9261b6cb0: Menu # Menu
+    e65a5670-88d9-49a9-9a78-36b9261b6cb0: 'Menu items' # Menu items
     e8402b03-d9a2-4670-9862-b5168dd5d4c5: Telefoonnummer # Telefoonnummer
     fdb5eef6-de84-4ce5-9d33-787bd5b8c792: Simple # Simple
     fdf11145-cf77-4635-a872-2b900223e4e8: 'Straat en nummer' # Straat en nummer
@@ -54,7 +54,7 @@ plugins:
     schemaVersion: 1.0.0
 system:
   edition: solo
-  live: false
+  live: true
   name: Eskobar
   retryDuration: null
   schemaVersion: 5.6.0.2
