@@ -24,4 +24,7 @@ return GeneralConfig::create()
     ->aliases([
         '@webroot' => dirname(__DIR__) . '/web',
     ])
-;
+    // Define the error template prefix
+    ->errorTemplatePrefix('_errors/')
+    // ->devMode(App::env('PRIMARY_SITE_URL') === 'http://eskobar.local');
+    ->devMode(false);
