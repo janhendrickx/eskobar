@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 {% include 'base/head.twig' %}
-    <body>
-        <div id="js__media-check"></div>
-        <div class="site__content">
-            
-
-            <div class="burger__screen">
+<body>
+    <div class="container" id="container">        
+            <div class="section menu">
                 {% include 'content/menu.twig' %}
             </div>
-
-            <div class="home__screen">
-                {% include 'blocks/navigation.twig' %}
-                {% include 'content/main.twig' %}
-                {% include 'blocks/footer.twig' %}
+            <div class="section home">
+                {% include 'content/home.twig' %}
+                {# {% include 'blocks/footer.twig' %} #}
             </div>
-            <div class="store__screen">
+            <div class="section info">
                 {% include 'content/info.twig' %}
             </div>
-        </div>
-        {% include 'scripts/scripts.twig' %}
+    </div>
+    {% include 'scripts/scripts.twig' %}
     </body>
 </html>

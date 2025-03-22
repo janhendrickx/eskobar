@@ -2,8 +2,44 @@
 
 {% set menuGoups = craft.entries().section('menu').type('heading').all() %}
 {% set menuItems = craft.entries().section('menu').type('menuItem') %}
-        
-<div class="screen__content">
+
+<div class="btn-wrapper btn-wrapper-right">
+    <button class="btn btn-right" onclick="navigate('home')">
+        <div class="btn-inner">
+            <img class="btn-icon" src="assets/img/back--right.png" alt="back icon"/>
+            <span>Terug</span>
+        </div>
+    </button>
+</div>
+
+<div class="menu-inner">
+  <div class="burger-group">  
+    {% for group in menuGoups %}
+      <div class="burger-group-item">
+        <div class="burger-group-title">
+          <h2>{{ group.title }}</h2>
+        </div>
+        <div class="burger-group-item-list">
+        {% for item in group.children %}
+          {% set price = item.price %}
+          <div class="burger-item">     
+              <p class="burger-price">{{ price ? '€ '~ price }}</p>
+              <div class="burger-heading">
+                <h3 class="burger-title">{{ item.title }}</h3>
+                {% if item.extra %}<p class="burger-extra">{{ item.extra }}</p>{% endif %}
+              </div>
+            {% if item.text|length %}<div class="burger-ingredients">{{ item.text|raw }}</div>{% endif %}
+          </div>
+          {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+  </div>
+</div>
+
+
+
+{# <div class="screen__content">
   <h2 class="screen__title">{{ title }}</h2>
     <div id="burgers" class="burger-group">
       
@@ -29,5 +65,5 @@
         {% endfor %}
         
       </div>
-  </div>
+  </div> #}
   

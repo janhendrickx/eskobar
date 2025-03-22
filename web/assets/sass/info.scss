@@ -1,0 +1,57 @@
+.info {
+    background-color: var(--red);
+    background-image: url("/assets/img/pattern--red.png");
+    flex-direction: column;
+    .logo {
+        height: 3.125rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.info-blocks-wrapper {
+    margin-top: .5rem;
+    .info-block {
+        &:last-child p:last-of-type {
+            // border: 2px solid hotpink;
+            margin-bottom: 0;
+        }
+    }
+    &::after {
+        content: "★";
+        display: block;
+        font-size: 2rem;
+        margin-block: .5rem;
+        text-align: center;
+    }
+}
+.info-blocks-wrapper,
+.info-block-notice {
+    &::before {
+        content: "★";
+        display: block;
+        font-size: 2rem;
+        margin-block: .5rem;
+        text-align: center;
+    }
+}
+
+.info-block {
+    padding-bottom: .5rem;
+    padding-inline: .5rem;
+    p {
+        margin-bottom: .75rem;
+    }
+    + .info-block:last-child {
+        padding-bottom: 0;     
+    }
+}
+
+// .info-block + .info-block:last-child {
+//     border: 5px solid green;
+//     margin-bottom: 0;
+// }
+
+.building-times {
+    /*font-family: "Akzidenz Medium";*/
+}
+

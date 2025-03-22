@@ -1,0 +1,66 @@
+.btn-wrapper {
+    position: absolute;
+    display: flex;
+    top: 0;
+    height: 100%;
+}
+
+.btn-wrapper-left {
+    left: 0;
+}
+
+.btn-wrapper-right {
+    right: 0;
+}
+
+.btn {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 30px;
+    color: var(--light);
+    border: none;
+    cursor: pointer;
+    height: 200px;
+    width: 115px;
+    background-color: var(--btn-bg-color);
+    border-radius: 400px 0 0 400px;
+}
+
+.btn-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .btn-icon {
+        height: 50px;
+        width: 50px;
+    }
+    
+    span {
+        margin-top: .5rem;
+        font-size: 1rem;
+    }
+}
+
+.btn-left {
+    left: 0;
+    border-radius: 0 400px 400px 0;
+
+    // Positioning of the icon inside the button
+    .btn-inner {
+        padding-right: 2rem;
+    }
+}
+
+.btn-right {
+    right: 0;
+    border-radius: 400px 0 0 400px;
+
+    // Positioning of the icon inside the button
+    .btn-inner {
+        padding-left: 1rem;
+    }
+}
+

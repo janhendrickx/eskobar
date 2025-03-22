@@ -1,0 +1,26 @@
+.home {
+    background-color: var(--green);
+    background-image: url("/assets/img/pattern--green.png");
+}
+
+.home-inner {
+    width: 60rem;
+    padding-bottom: 2.5rem;
+    padding-top: 1.25rem;
+    color: var(--light);
+    text-align: center;
+    position: fixed;
+    top: 2.5rem;
+}
+
+.eskobar-logo-text {
+    height: 125px;
+    margin-block: 1rem;
+}
+
+.logo-baseline {
+    font-weight: 400;
+    padding-bottom: 2rem;
+    color: var(--dark);
+    margin-top: 0;
+}

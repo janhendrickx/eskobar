@@ -6,10 +6,10 @@
         {% case "link" %}
             {% set link = block.button %}
             {% if link.type == "email" %}
-                <a class="order-btn" href="{{ link.value() }}" style="padding-block: 2rem">
-                    <span class="order-btn__after"></span>
-                    <span class="order-btn__before"></span>
-                    <span class="order-btn__text">{{ link.label }}</span>
+                <a class="btn-fancy btn-fancy-green" href="{{ link.value() }}">
+                    <div class="btn-fancy-inner">
+                        <span class="btn-fancy-text">{{ link.label }}</span>
+                    </div>
                 </a>
             {% endif %}
         {% endswitch %}

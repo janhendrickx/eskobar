@@ -1,4 +1,4 @@
-dateModified: 1741286885
+dateModified: 1742497700
 email:
   fromEmail: admin@janhendrickx.be
   fromName: Eskobar
@@ -9,9 +9,10 @@ meta:
     3b838d7e-ee1b-4818-a756-dc28dd571e47: Informatie # Informatie
     3f24f68b-1921-4d40-82e8-23506b424e70: Home # Home
     4c7a80d6-0249-476d-95bf-c287d9c3dcdf: Titel # Titel
-    5d067db8-2536-4d07-a966-d4f807d19704: Kader # Kader
+    5d067db8-2536-4d07-a966-d4f807d19704: Melding # Melding
     8b68262e-6fe4-4dea-9563-543898f92f84: Mailadres # Mailadres
     9bc116c1-4a3f-4ab5-a101-b2d850599802: Prijs # Prijs
+    9cae0250-7f3f-4567-aaa2-378d5a8f0ef6: Melding # Melding
     9d02ce1f-79b8-44ec-a46c-f81e18a52b4d: Knop # Knop
     130f9745-bb01-4272-b43e-5c73a05a62f5: Extra # Extra
     548e3f68-624a-44fb-a801-020e085b102a: Inhoud # Inhoud
