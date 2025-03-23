@@ -12,7 +12,6 @@
     margin-top: .5rem;
     .info-block {
         &:last-child p:last-of-type {
-            // border: 2px solid hotpink;
             margin-bottom: 0;
         }
     }
@@ -26,6 +25,7 @@
 }
 .info-blocks-wrapper,
 .info-block-notice {
+    max-width: var(--max-width);
     &::before {
         content: "★";
         display: block;

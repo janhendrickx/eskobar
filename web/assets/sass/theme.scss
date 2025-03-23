@@ -7,6 +7,7 @@
     --blue: #28a9e0;
     --light: #fafafa;
     --dark: #333;
+    --max-width: 60rem;
 }
 
 body, html {
@@ -38,15 +39,21 @@ body, html {
 }
 
 .section-inner {
-    width: 90vw;
+    width: 100%;
+    padding-inline: 4rem;
     padding-bottom: 2.5rem;
-    padding-top: 1.25rem;
+    padding-top: 3.75rem;
     color: var(--light);
     text-align: center;
-    // position: fixed;
-    top: 2.5rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: scroll;
+    justify-items: anchor-center;
+    @include mixin.media-md {
+        padding-inline: 5rem;
+    }
     @include mixin.media-lg {
-        width: 60rem;
+        padding-inline: 7.25rem;
     }
 }
 

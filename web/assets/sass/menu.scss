@@ -1,21 +1,27 @@
+@use 'mixins' as mixin;
+
 .menu {
     background-color: var(--blue);
     background-image: url("/assets/img/pattern--blue.png"); 
 }
 
 .burger-group {
+    max-width: var(--max-width);
     margin-block: 2.5rem;
-    @media (max-width: 768px) {
+    @include mixin.media-lg {
         margin-block: 1.5rem;
     }
 }
 
 .burger-group-title {
-    margin-block: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
     position: relative;
     display: inline-block;
-    @media (max-width: 768px) {
-        margin-block: 1.5rem;
+    width: 100%;
+    @include mixin.media-lg {
+        margin-top: 2.5rem;
+        margin-bottom: 4rem;
     }
     h2 {
         line-height: 1;
@@ -44,28 +50,34 @@
 .burger-heading {
     color: var(--light);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media (max-width: 768px) {
-        display: inline-block;
+    @include mixin.media-lg {
+        flex-direction: row;
+        // display: inline-block;
     }
 }
 
 .burger-extra {
     line-height: 1;
     display: flex;
-    @media (max-width: 768px) {
+    @include mixin.media-md {
         margin-block: .25rem;
         display: inline-flex;
     }
 
-    &::before,
+    &::before {
+        font-size: 1rem;
+        display: block;
+        margin-inline: 0.5rem;
+        content: "-";
+    }
     &::after {
         font-size: 1rem;
         display: block;
         margin-inline: 0.5rem;
-        @media (max-width: 768px) {
+        @include mixin.media-md {
             content: "-";
         }
     }
@@ -75,23 +87,28 @@
 }
 
 .burger-item {
-    margin-block: 0.75rem;
-    @media (max-width: 768px) {
-        margin-block: .5rem;
-    }
+    // border: 1px solid red;
+    // margin-block: 0.75rem;
+    // @include mixin.media-lg {
+    //     margin-block: .5rem;
+    // }
     &:not(:last-of-type)::after {
-        margin-top: 0.75rem;
+        // margin-top: 0.75rem;
         color: var(--light);
         content: "★";
         display: block;
         font-size: 1.5rem;
         text-align: center;
-        @media (max-width: 768px) {
+        @include mixin.media-lg {
             margin-top: 0.5rem;
         }
     }
 }
-    
+
+.burger-price {
+    color: var(--dark);
+}
+
 .burger-subtitle {
     color: #81cded;
 }
@@ -111,7 +128,7 @@
     font-size: 1rem;
 }
 
-@media (min-width: 768px) {
+@include mixin.media-lg {
     .burger-subtitle, .burger-ingredients {
         padding: 0;
     }
@@ -123,16 +140,7 @@
     text-align: center;
 }
 
-.star::after {
-    color: white;
-    content: "★";
-    display: block;
-    font-size: 12px;
-    line-height: 3;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
+@include mixin.media-lg {
     .star::after {
         line-height: 4.2;
     }

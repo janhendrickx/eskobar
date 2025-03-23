@@ -1,3 +1,5 @@
+@use 'mixins' as mixin;
+
 .btn-wrapper {
     position: absolute;
     display: flex;
@@ -18,14 +20,23 @@
     position: sticky;
     top: 50%;
     transform: translateY(-50%);
-    padding: 30px;
+    padding: 1.5rem 2rem 2rem 1.5rem;
     color: var(--light);
     border: none;
     cursor: pointer;
-    height: 200px;
-    width: 115px;
+    height: 6.25rem;
+    width: 3.625rem;
     background-color: var(--btn-bg-color);
     border-radius: 400px 0 0 400px;
+    @include mixin.media-md {
+        padding: 2rem;
+        height: 9.375rem;
+        width: 5.4rem;
+    }
+    @include mixin.media-lg {
+        height: 12.5rem;
+        width: 7.1875rem;
+    }
 }
 
 .btn-inner {
@@ -35,20 +46,30 @@
     align-items: center;
     
     .btn-icon {
-        height: 50px;
-        width: 50px;
+        height: 2rem;
+        width: 2rem;
+        @include mixin.media-md {
+            height: 2.75rem;
+            width: 2.75rem;
+        }
+        @include mixin.media-lg {
+            height: 3.125rem;
+            width: 3.125rem;
+        }
     }
     
     span {
         margin-top: .5rem;
-        font-size: 1rem;
+        font-size: .75rem;
+        @include mixin.media-md {
+            font-size: 1rem;
+        }
     }
 }
 
 .btn-left {
     left: 0;
     border-radius: 0 400px 400px 0;
-
     // Positioning of the icon inside the button
     .btn-inner {
         padding-right: 2rem;
@@ -58,6 +79,11 @@
 .btn-right {
     right: 0;
     border-radius: 400px 0 0 400px;
+
+    padding: 1.5rem 2rem 2rem 1rem;
+    @include mixin.media-md {
+        padding: 2rem;
+    }
 
     // Positioning of the icon inside the button
     .btn-inner {

@@ -1,3 +1,5 @@
+@use 'mixins' as mixin;
+
 html {
     font-family: 'Courier Prime', sans-serif;
     font-size: 100%;
@@ -21,11 +23,11 @@ h1 {
 }
 
 h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2.625rem); 
+    font-size: clamp(2rem, 2.5vw, 2.625rem); 
 }
 
 h3 {
-    font-size: clamp(1.25rem, 2.5vw, 2.25rem); 
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem); 
 }
 
 a {
@@ -38,12 +40,14 @@ a {
 
 h4, 
 p {
-    line-height: 1.5;
-    font-size: 1.25rem;
+   
     font-size: clamp(1rem, 2.5vw, 1.25rem); 
     /* Minimale grootte is 1rem, 
        schaal met 2.5vw, 
        maximale grootte is 2rem */
+    @include mixin.media-lg {
+        line-height: 1.5;
+    }
 }
 
 .text-light {

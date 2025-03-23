@@ -9,6 +9,9 @@
     // height: 40px;
     width: 20vw;
     min-width: 300px;
+    @media screen and (max-width: 440px){
+        min-width: 100%;
+    }
     @include mixin.media-lg {
         width: 20vw;
         // height: 125px;
