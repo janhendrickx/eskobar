@@ -1,11 +1,11 @@
 
-{% set menuSection = craft.entries.section('menu').one() %}
-{% set infoSection = craft.entries.section('info').one() %}
+{% set menuSection = menuSection ?? craft.entries.section('menu').one() ?? null %}
+{% set infoSection = infoSection ?? craft.entries.section('info').one() ?? null %}
 
-{% if menuSection is defined %}
-    {% set onlyHome = 'no-container' %}
-{% else %}
+{% if (menuSection and menuSection.status == 'live') and (infoSection and infoSection.status == 'live') %}
     {% set onlyHome = 'container' %}
+{% else %}
+    {% set onlyHome = menuSection ~ 'no-container' %}
 {% endif %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">

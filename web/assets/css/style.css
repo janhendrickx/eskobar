@@ -1,23 +1,26 @@
 @charset "UTF-8";
 .btn-fancy {
-  --fancy-size: 32px;
+  --fancy-size: clamp(1.25rem, 2.5vw, 2rem);
   background: var(--dark) none repeat scroll 0 0;
   color: var(--light);
-  font-size: 2rem;
-  padding-block: 1rem;
-  padding-inline: 1.5rem;
+  font-size: var(--fancy-size);
   position: relative;
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin-inline: 1.75rem;
   margin-block: 1.75rem;
+  justify-self: center;
+  align-items: center;
 }
 .btn-fancy:hover {
   color: var(--light);
 }
 .btn-fancy::before, .btn-fancy::after {
   content: "";
-  position: absolute;
+  position: relative;
   height: 0;
   width: 0;
 }
@@ -228,7 +231,6 @@
 }
 
 .burger-title {
-  font-size: 24px;
   line-height: 1;
 }
 
@@ -315,6 +317,7 @@
 }
 
 .btn {
+  z-index: 1;
   position: sticky;
   top: 50%;
   transform: translateY(-50%);
@@ -382,9 +385,11 @@ body, html {
   display: flex;
   transition: transform 0.5s;
   transform: translateX(-100%);
+  border: 5px solid blue;
 }
 
 .section {
+  border: 5px solid hotpink;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -397,12 +402,15 @@ body, html {
 }
 
 .section-inner {
-  width: 90vw;
+  border: 5px solid red;
+  padding-inline: 2.5rem;
   padding-bottom: 2.5rem;
-  padding-top: 1.25rem;
+  padding-top: 3.75rem;
   color: var(--light);
   text-align: center;
-  top: 2.5rem;
+  position: fixed;
+  height: 100vh;
+  overflow-y: scroll;
 }
 @media (min-width: 992px) {
   .section-inner {
@@ -442,11 +450,11 @@ h1 {
 }
 
 h2 {
-  font-size: 2.625rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.625rem);
 }
 
 h3 {
-  font-size: 2.25rem;
+  font-size: clamp(1.25rem, 2.5vw, 2.25rem);
 }
 
 a {
@@ -461,6 +469,10 @@ h4,
 p {
   line-height: 1.5;
   font-size: 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  /* Minimale grootte is 1rem, 
+     schaal met 2.5vw, 
+     maximale grootte is 2rem */
 }
 
 .text-light {

@@ -21,11 +21,11 @@ h1 {
 }
 
 h2 {
-    font-size: 2.625rem;
+    font-size: clamp(1.5rem, 2.5vw, 2.625rem); 
 }
 
 h3 {
-    font-size: 2.25rem;
+    font-size: clamp(1.25rem, 2.5vw, 2.25rem); 
 }
 
 a {
@@ -40,6 +40,10 @@ h4,
 p {
     line-height: 1.5;
     font-size: 1.25rem;
+    font-size: clamp(1rem, 2.5vw, 1.25rem); 
+    /* Minimale grootte is 1rem, 
+       schaal met 2.5vw, 
+       maximale grootte is 2rem */
 }
 
 .text-light {
