@@ -1,4 +1,5 @@
-{% set contentBlocks = entry.contentMatrix.all() ?? null %}
+{% set home = craft.entries.section('home').one() %}
+{% set contentBlocks = home.contentMatrix.all() ?? null %}
 
 {% if menuSection %}
     <div class="btn-wrapper btn-wrapper-left">

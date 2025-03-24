@@ -1,0 +1,34 @@
+{% set home = craft.entries.section('home').one() %}
+{% set menuSection = menuSection ?? craft.entries.section('menu').one() ?? null %}
+{% set infoSection = infoSection ?? craft.entries.section('info').one() ?? null %}
+{% set style = '' %}
+{% if craft.app.request.fullPath == 'menu' %}
+    {% set style = 'style="transform: translateX(0px);"' %}
+{% endif %}
+{# style="transform: translateX(0px);" #}
+{# {% if (menuSection and menuSection.status == 'live') and (infoSection and infoSection.status == 'live') %}
+    {% set onlyHome = 'container' %}
+{% else %}
+    {% set onlyHome = menuSection ~ 'no-container' %}
+{% endif %} #}
+<!DOCTYPE html>
+<html lang="nl">
+{% include 'base/head.twig' %}
+<body>
+    <div class="container" id="container" {{ style|raw }}>        
+        {% if menuSection %}
+            <div class="section menu">
+                {% include 'content/menu.twig' %}
+            </div>
+        {% endif %}
+            <div class="section home">
+                {% include 'content/home.twig' %}
+                {# {% include 'blocks/footer.twig' %} #}
+            </div>
+            {% if infoSection %}
+                {% include 'content/info.twig' %}
+            {% endif %}
+    </div>
+    {% include 'scripts/scripts.twig' %}
+    </body>
+</html>

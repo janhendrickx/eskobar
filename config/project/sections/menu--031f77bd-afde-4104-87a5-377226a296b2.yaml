@@ -23,6 +23,6 @@ siteSettings:
   c44f25bd-e99c-4f49-87e4-1ac555445a3b: # Eskobar
     enabledByDefault: true
     hasUrls: true
-    template: index.twig
+    template: page.twig
     uriFormat: menu
 type: single
