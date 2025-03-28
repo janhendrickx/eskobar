@@ -18,12 +18,15 @@
         <div class="burger-group-item">
           <div class="burger-group-title">
             <h2>{{ group.title }}</h2>
+            {% if group.extra %}<h4 class="group-extra">{{ group.extra }}</h4>{% endif %}
           </div>
           <div class="burger-group-item-list">
           {% for item in group.children %}
             {% set price = item.price %}
             <div class="burger-item">     
-                <p class="burger-price">{{ price ? '€ '~ price }}</p>
+                {% if price %}
+                  <p class="burger-price">{{ price ? '€ '~ price }}</p>
+                {% endif %}
                 <div class="burger-heading">
                   <h3 class="burger-title">{{ item.title }}</h3>
                   {% if item.extra %}<p class="burger-extra">{{ item.extra }}</p>{% endif %}

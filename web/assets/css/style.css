@@ -263,6 +263,9 @@
 .burger-price {
   color: var(--dark);
 }
+.burger-price p {
+  font-size: 1rem;
+}
 
 .burger-subtitle {
   color: #81cded;
@@ -276,18 +279,22 @@
 .burger-ingredients {
   /*font-family: "Akzidenz Medium";*/
   margin: 0 auto;
-  max-width: 992px;
+  max-width: 45rem;
   padding-left: 10%;
   padding-right: 10%;
   text-align: center;
+}
+.burger-subtitle p,
+.burger-ingredients p {
   font-size: 1rem;
 }
-
 @media (min-width: 992px) {
-  .burger-subtitle, .burger-ingredients {
+  .burger-subtitle,
+  .burger-ingredients {
     padding: 0;
   }
 }
+
 .burger-list {
   list-style: outside none none;
   margin: 0;
